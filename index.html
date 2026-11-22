@@ -217,6 +217,29 @@ h1,h2,.serif{font-family:'Tondu','DM Sans',sans-serif;font-weight:400;letter-spa
 @media (min-width:900px){.brand{left:5vw;top:24px}.brand img{height:34px}.brand .bm{height:40px}}
 @media (max-width:899px){.tag.t1,.tag.t2{margin-top:34px}}
 @media (prefers-reduced-motion:reduce){.el,.card,#maya img,.tracks{transition:none!important}.hint{animation:none}}
+
+/* Raspberry theme */
+:root{--bg:#FF2E9A;--acc:#6600FF;--surf2:#111;--line:rgba(17,17,17,.0)}
+body,.stage,.stage.sc1,.stage.sc2,.stage.sc3,.stage.sc4{--sky:#FF2E9A;background:#FF2E9A}
+.floor{background:linear-gradient(180deg,rgba(102,0,255,0),rgba(102,0,255,.12));border-top:0}
+.arch{background:linear-gradient(180deg,rgba(250,240,230,.30),rgba(250,240,230,.06));box-shadow:none}
+.card{background:#111;border:0;box-shadow:0 18px 40px -14px rgba(60,0,40,.55)}
+.bub,.pill,.proof,.tag,.notif{background:#111;color:#FAF0E6;border:0;box-shadow:0 12px 26px -10px rgba(60,0,40,.55)}
+.say.y b{background:#6600FF;color:#fff}
+.hero h1,.stat p,.ico,#pm small,.scene>.src,#final h1,#final p{color:#111}
+.hero h1 em{color:#FAF0E6}
+.hero p,.hint,.legend{color:#111;opacity:.85}
+#final p{opacity:.85}
+#final{background:#FF2E9A}
+#final h1 span{color:#6600FF}
+.ring .n{color:#111}
+.people i{background:rgba(17,17,17,.28)}.people i.f{background:#111}
+.legend i{background:#111!important}.legend span+span i{background:rgba(17,17,17,.28)!important}
+.ico span{background:#111;border:0;color:#FAF0E6}
+.orbit{border-color:rgba(17,17,17,.35)}
+#mariia img{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 8px 14px rgba(40,0,30,.45))}
+.proof small,.bub small{letter-spacing:0;word-break:keep-all;white-space:nowrap;font-family:'DM Sans',system-ui,sans-serif;color:#c9bfd2}
+.brand img,#final .brandend img{background:none!important;border:0;box-shadow:none;outline:0}
 </style></head><body>
 <div class="wrap">
 <div class="stage" id="stage">
@@ -256,7 +279,7 @@ h1,h2,.serif{font-family:'Tondu','DM Sans',sans-serif;font-weight:400;letter-spa
 <div class="notif el n4" data-s="6" style="right:4%;top:58%;transition-delay:.4s"><em style="background:#6600FF">💬</em><span>128 new comments<small>Reply to your community</small></span></div>
 
 <div class="stat el" data-s="7"><div class="viz">
- <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#222" stroke-width="14"/><circle id="arc" cx="60" cy="60" r="50" fill="none" stroke="url(#gr)" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 314.16"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#6600FF"/><stop offset="1" stop-color="#FF2E9A"/></linearGradient></defs></svg><div class="n"><span><span id="cnt">0</span><sup>%</sup></span></div></div>
+ <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#222" stroke-width="14"/><circle id="arc" cx="60" cy="60" r="50" fill="none" stroke="url(#gr)" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 314.16"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#6600FF"/><stop offset="1" stop-color="#2a0066"/></linearGradient></defs></svg><div class="n"><span><span id="cnt">0</span><sup>%</sup></span></div></div>
  <div class="people" id="dots"></div></div>
  <div class="legend"><span><i style="background:var(--acc)"></i>reported stress</span><span><i style="background:#3a2a55"></i>did not</span></div>
  <p><b>of surveyed established creators reported work-related stress.</b></p><p class="src">Source: Kolsquare, 2025</p></div>
