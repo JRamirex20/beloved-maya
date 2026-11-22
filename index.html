@@ -1,741 +1,244 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Teachy Student Web, Prioritization Matrix</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maya's workflow — Make room for a new way to create</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f7f6f2;
-    --panel: #ffffff;
-    --ink: #1a1a1a;
-    --muted: #6b6b6b;
-    --line: #e4e2dc;
-    --accent: #1a1a1a;
-    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
-    --radius: 12px;
-    --quick: #e8f3ec;
-    --strategic: #eae6f5;
-    --fill: #f0eee6;
-    --money: #f5e8e6;
-    --dot: #1a1a1a;
-    --dot-pending: #c9c5bd;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif; }
-  header {
-    padding: 18px 28px;
-    border-bottom: 1px solid var(--line);
-    background: #fff;
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 5;
-  }
-  header h1 { font-size: 17px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
-  header .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  header .actions { display: flex; gap: 8px; align-items: center; }
-  .progress { font-size: 12px; color: var(--muted); margin-right: 12px; }
-  button {
-    font: inherit;
-    border: 1px solid var(--line);
-    background: #fff;
-    color: var(--ink);
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all .15s ease;
-  }
-  button:hover { border-color: #c9c5bd; }
-  button.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
-  button.primary:hover { background: #000; }
-  button:disabled { opacity: .4; cursor: not-allowed; }
+:root{--bg:#fbf6ef;--ink:#1d1b2e;--mute:#6b6880;--pr:#9999ff;--prd:#2a1a5e;--acc:#ff6b4a;--mar:#ffb547;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:17px/1.55 'DM Sans',system-ui,sans-serif}
+h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+.wrap{position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;width:100%;overflow:hidden;z-index:0}
+.steps{position:relative;z-index:2;margin-top:-100vh;margin-top:-100svh;pointer-events:none}
+.step{min-height:95vh;display:flex;align-items:flex-end;padding:0 16px 7vh}
+.step:first-child{min-height:100vh}
+.card{pointer-events:auto;background:rgba(255,255,255,.95);border-radius:18px;padding:18px 20px;box-shadow:0 8px 30px rgba(29,27,46,.12);max-width:440px;width:100%;margin:0 auto;opacity:.35;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.step.on .card{opacity:1;transform:none}
+.card p+p,.card .say+p,.card p+.say,.say+.say{margin-top:10px}
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:6px}
+.card h2{font-size:26px;line-height:1.15;margin-bottom:8px}
+.say{display:flex;gap:10px;align-items:flex-start}
+.say b{flex:none;font-size:11px;letter-spacing:.08em;padding:3px 8px;border-radius:99px;margin-top:3px}
+.say.m b{background:var(--mar);color:#4a2c00}.say.y b{background:var(--ink);color:#fff}
+.say span{font-weight:500}
+.src{font-size:12px;color:var(--mute)}
+/* stage layout */
+.scene{position:absolute;inset:0}
+.el{position:absolute;opacity:0;transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.el.v{opacity:1}
+#maya{left:50%;top:17%;width:46%;max-width:260px;transform:translateX(-50%)}
+.st-ui #maya,.st-pm #maya{transform:translateX(-95%) scale(.85)}
+#mariia{right:4%;top:44%;width:22%;max-width:130px;transform:translateX(160%)}
+#mariia.v{transform:none}
+.tag{background:#fff;border:2px solid var(--ink);border-radius:99px;padding:5px 12px;font-size:13px;font-weight:700;white-space:nowrap;transform:scale(.6)}
+.tag.v{transform:none}
+.app{left:52%;top:14%;width:44%;max-width:300px;background:#2b2b3a;border-radius:16px;padding:10px;color:#fff;font-size:11px;transform:translateY(30px)}
+.app.v{transform:none}
+.app .scr{height:110px;border-radius:8px;background:linear-gradient(135deg,#ff9a76,#ffd36e);position:relative;overflow:hidden}
+.app .tl{margin-top:8px;display:grid;gap:4px}
+.app .tl i{display:block;height:12px;border-radius:3px}
+.app .tools{display:flex;justify-content:space-between;margin-top:8px;opacity:.85}
+.pmapp{background:#1a1230;border:2px solid var(--pr)}
+.pmapp .scr{background:linear-gradient(135deg,#6a5cff,#d38cff)}
+.feat{display:inline-block;background:var(--pr);color:var(--prd);border-radius:6px;padding:2px 6px;margin:6px 4px 0 0;font-weight:700;opacity:0;transition:opacity .5s}
+.feat.v{opacity:1}
+.ico{width:64px;text-align:center;font-size:11px;font-weight:700;transform:scale(.5)}
+.ico.v{transform:none}
+.ico svg{width:44px;height:44px;display:block;margin:0 auto 3px;background:#fff;border-radius:12px;border:2px solid var(--ink);padding:8px}
+#pm{width:62px;height:62px;border-radius:15px;background:var(--prd);border:3px solid var(--pr);color:var(--pr);font:700 26px/56px 'DM Sans';text-align:center;transform:scale(.3) rotate(-20deg)}
+#pm.v{transform:none}
+#pm small{position:absolute;left:50%;top:100%;transform:translateX(-50%);font-size:10px;color:var(--ink);white-space:nowrap;line-height:1.6}
+.notif{background:#fff;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.15);padding:8px 12px;font-size:13px;font-weight:700;display:flex;gap:8px;align-items:center;max-width:210px;transform:translateY(-30px)}
+.notif.v{transform:none}
+.notif em{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;flex:none}
+.stat{left:50%;top:10%;transform:translateX(-50%) scale(.8);text-align:center;width:90%;max-width:520px}
+.stat.v{transform:translateX(-50%)}
+.stat .n{font-family:'DM Serif Display';font-size:clamp(84px,26vw,170px);line-height:1;color:var(--acc)}
+.stat .bar{height:14px;background:#eadfd2;border-radius:99px;overflow:hidden;margin:6px auto 8px;max-width:340px}
+.stat .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width 1.6s ease}
+.stat.v .bar i{width:65%}
+.dots{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:240px;margin:8px auto}
+.dots i{aspect-ratio:1;border-radius:50%;background:#e2d7cb;transition:background .3s}
+.dots i.f{background:var(--acc)}
+.bub{background:#fff;border:2px dashed var(--mute);color:var(--mute);border-radius:16px;padding:6px 12px;font-weight:700;font-size:14px;transform:scale(.7);white-space:nowrap}
+.bub.v{transform:none}
+.bub small,.proof small{display:block;font-size:9px;font-weight:400;letter-spacing:.02em}
+.proof{background:var(--prd);color:#fff;border-radius:12px;padding:7px 12px;font-weight:700;font-size:13px;transform:translateX(30px);white-space:nowrap}
+.proof:before{content:'✓ ';color:var(--pr)}
+.proof.v{transform:none}
+.pill{background:#fff;border:2px solid var(--prd);color:var(--prd);border-radius:99px;padding:6px 14px;font-weight:700;font-size:14px;transform:scale(.6);white-space:nowrap}
+.pill.v{transform:none}
+#final{inset:0;background:var(--prd);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;z-index:5}
+#final h1{font-size:clamp(40px,11vw,96px);line-height:1.02;max-width:900px}
+#final h1 span{color:var(--pr)}
+#final p{margin-top:18px;opacity:.75;font-size:14px}
+.hero{position:absolute;left:0;right:0;top:56%;text-align:center;padding:0 20px;transition:opacity .5s}
+.hero h1{font-size:clamp(38px,10vw,72px);line-height:1}
+.hero p{color:var(--mute);margin-top:8px}
+.hint{margin-top:18px;font-size:13px;color:var(--mute);animation:bob 1.6s ease-in-out 3}
+@keyframes bob{50%{transform:translateY(6px)}}
+.wave{transform-origin:70% 60%}
+.st-s2b .wave,.st-s2a .wave{animation:none}
+#maya .arm{transform-origin:150px 160px;transition:transform .6s}
+.edit #maya .arm{transform:rotate(-12deg)}
+.stress #maya .brow{transform:translateY(2px) rotate(8deg);transform-origin:center}
+.end-spacer{height:60vh}
+@media (min-width:900px){
+ .step{align-items:center;padding:0 0 0 6vw}
+ .card{margin:0;max-width:400px}
+ .scene{left:38%}
+ #maya{top:14%;max-width:300px}
+ .app{max-width:340px}
+ .app .scr{height:150px}
+ #final{left:0}
+}
+@media (prefers-reduced-motion:reduce){.el,.card,.stat .bar i{transition:none}.hint{animation:none}}
+.ic1,.ic2,.ic3,.ic4{top:47%}.ic1{left:4%}.ic2{left:28%;transition-delay:.15s}.ic3{left:52%;transition-delay:.3s}.ic4{left:76%;transition-delay:.45s}
+.ico{width:21%}
+@media (min-width:900px){.ic1,.ic2{top:56%}.ic3,.ic4{top:70%}.ic1,.ic3{left:52%}.ic2,.ic4{left:66%}.ico{width:80px}#mariia{top:70%}#pm{top:3%!important}#bpro{right:4%!important;top:28%!important}}
+</style></head><body>
+<div class="wrap">
+<div class="stage" id="stage"><div class="scene">
 
-  main { display: grid; grid-template-columns: 1fr 420px; gap: 0; height: calc(100vh - 68px); }
+<div class="hero el" data-s="0"><h1>Maya's workflow</h1><p>Why change what already works?</p><div class="hint">Scroll ↓</div></div>
 
-  .board-wrap { padding: 24px; overflow: auto; display: flex; flex-direction: column; }
-  .axis-row { display: grid; grid-template-columns: 32px 1fr; gap: 8px; flex: 1; min-height: 540px; }
-  .y-axis {
-    writing-mode: vertical-rl; transform: rotate(180deg);
-    text-align: center; font-size: 12px; color: var(--muted);
-    letter-spacing: 0.04em; text-transform: uppercase; align-self: center;
-  }
-  .matrix-stack { display: flex; flex-direction: column; gap: 8px; }
-  .matrix {
-    position: relative; flex: 1; min-height: 540px;
-    border: 1px solid var(--line); border-radius: var(--radius);
-    background: #fff;
-    overflow: hidden;
-  }
-  .quad-bg { position: absolute; width: 50%; height: 50%; }
-  .bg-quick { top: 0; left: 0; background: var(--quick); }
-  .bg-strategic { top: 0; left: 50%; background: var(--strategic); }
-  .bg-fill { top: 50%; left: 0; background: var(--fill); }
-  .bg-money { top: 50%; left: 50%; background: var(--money); }
-  .quad-label {
-    position: absolute; font-size: 11px; font-weight: 600;
-    color: rgba(0,0,0,0.55); text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 10px 14px;
-  }
-  .quad-label small { display: block; font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 10px; opacity: .75; }
-  .lbl-quick { top: 0; left: 0; }
-  .lbl-strategic { top: 0; right: 0; text-align: right; }
-  .lbl-fill { bottom: 0; left: 0; }
-  .lbl-money { bottom: 0; right: 0; text-align: right; }
-  .midline-x, .midline-y {
-    position: absolute; background: rgba(0,0,0,0.08);
-  }
-  .midline-x { left: 0; right: 0; top: 50%; height: 1px; }
-  .midline-y { top: 0; bottom: 0; left: 50%; width: 1px; }
+<!-- MAYA -->
+<svg id="maya" class="el" data-s="0-6,8-15" viewBox="0 0 300 380" aria-label="Maya">
+ <ellipse cx="150" cy="368" rx="95" ry="10" fill="#1d1b2e" opacity=".08"/>
+ <path d="M70 380c0-90 30-140 80-140s80 50 80 140z" fill="#ff6b4a"/>
+ <path d="M120 245h60l-30 40z" fill="#fff" opacity=".85"/>
+ <rect x="133" y="200" width="34" height="45" rx="12" fill="#c98b62"/>
+ <path d="M84 120c-6-70 40-100 70-100s78 22 68 104c-4 40 10 70 10 90-30 8-50-10-55-40H118c-6 30-26 48-48 38 6-20 18-50 14-92z" fill="#2a1a2e"/>
+ <ellipse cx="150" cy="132" rx="56" ry="66" fill="#d9a07a"/>
+ <path d="M94 116c10-44 40-64 70-60 26 4 44 26 46 50-30-6-62-18-80-40-8 22-20 38-36 50z" fill="#2a1a2e"/>
+ <g class="brow"><path d="M118 116q10-6 20 0M162 116q10-6 20 0" stroke="#2a1a2e" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+ <circle cx="128" cy="134" r="5" fill="#1d1b2e"/><circle cx="172" cy="134" r="5" fill="#1d1b2e"/>
+ <path d="M136 166q14 12 28 0" stroke="#8a3b2a" stroke-width="4" fill="none" stroke-linecap="round"/>
+ <circle cx="112" cy="154" r="8" fill="#ff8f7a" opacity=".5"/><circle cx="188" cy="154" r="8" fill="#ff8f7a" opacity=".5"/>
+ <g class="arm"><path d="M200 300c20-20 30-50 20-70" stroke="#d9a07a" stroke-width="22" fill="none" stroke-linecap="round"/>
+ <rect x="200" y="182" width="44" height="76" rx="9" fill="#1d1b2e"/><rect x="205" y="190" width="34" height="58" rx="5" fill="#9fd8ff" id="phone"/></g>
+</svg>
 
-  .dot {
-    position: absolute;
-    background: var(--dot); color: #fff;
-    padding: 4px 9px; border-radius: 999px;
-    font-size: 12px; font-weight: 500;
-    cursor: pointer; white-space: nowrap;
-    box-shadow: var(--shadow);
-    border: 2px solid #fff;
-    transition: transform .15s ease;
-    max-width: 160px; overflow: hidden; text-overflow: ellipsis;
-  }
-  .dot.active { background: #fff; color: var(--ink); border-color: var(--ink); }
-  .dot { --tx: -50%; --ty: 50%; --ox: 0px; --oy: 0px; transform: translate(calc(var(--tx) + var(--ox)), calc(var(--ty) + var(--oy))); }
-  .dot:hover { transform: translate(calc(var(--tx) + var(--ox)), calc(var(--ty) + var(--oy))) scale(1.08); z-index: 4; }
-  .dot.x-left { --tx: 0; }
-  .dot.x-right { --tx: -100%; }
-  .dot.y-top { --ty: 100%; }
-  .dot.y-bottom { --ty: 0; }
+<!-- MARIIA mascot -->
+<svg id="mariia" class="el" data-s="2,5-6,8-14" viewBox="0 0 140 170" aria-label="Mariia, the mascot">
+ <ellipse cx="70" cy="162" rx="40" ry="6" fill="#1d1b2e" opacity=".1"/>
+ <path d="M70 20c34 0 56 28 56 70 0 40-22 64-56 64S14 130 14 90c0-42 22-70 56-70z" fill="#ffb547"/>
+ <path d="M44 26 36 4l22 16M96 26l8-22-22 16" fill="#ffb547"/>
+ <ellipse cx="70" cy="110" rx="30" ry="26" fill="#ffe3b0"/>
+ <circle cx="52" cy="76" r="11" fill="#fff"/><circle cx="88" cy="76" r="11" fill="#fff"/>
+ <circle cx="54" cy="78" r="5" fill="#1d1b2e"/><circle cx="90" cy="78" r="5" fill="#1d1b2e"/>
+ <path d="M60 98q10 9 20 0" stroke="#1d1b2e" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+ <path class="wave" d="M122 86q16-14 12-34" stroke="#ffb547" stroke-width="12" fill="none" stroke-linecap="round"/>
+</svg>
 
-  .x-axis { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; padding-left: 32px; }
+<!-- Opening details -->
+<div class="tag el" data-s="1" style="left:4%;top:7%">4 years creating</div>
+<div class="tag el" data-s="1" style="right:4%;top:12%">✂︎ same app</div>
+<div class="tag el" data-s="1" style="left:4%;top:50%">✨ favourite effects</div>
+<div class="tag el" data-s="1" style="right:4%;top:56%">💸 earns money</div>
 
-  .legend {
-    margin-top: 14px; display: flex; gap: 16px; font-size: 12px; color: var(--muted);
-    flex-wrap: wrap;
-  }
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .legend i {
-    width: 10px; height: 10px; border-radius: 3px; display: inline-block;
-  }
+<!-- Familiar app -->
+<div class="app el" id="old" data-s="2-4">
+ <div style="display:flex;justify-content:space-between;margin-bottom:6px"><b>My usual editor</b><span>●●●</span></div>
+ <div class="scr"><svg viewBox="0 0 100 60" width="100%" height="100%" preserveAspectRatio="none"><circle cx="70" cy="22" r="10" fill="#fff6"/><path d="M0 60 30 30l20 18 15-10 35 22z" fill="#0003"/></svg></div>
+ <div class="tl"><i style="background:#ff9a76;width:80%"></i><i style="background:#7fd1ae;width:60%;margin-left:15%"></i><i style="background:#ffd36e;width:45%"></i></div>
+ <div class="tools"><span>✂︎ Cut</span><span>◐ Filters</span><span>T Text</span><span>♫ Audio</span></div>
+</div>
+<!-- four icons -->
+<div class="ico el ic1" data-s="3-4"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M6 18 18 6" stroke="#1d1b2e" stroke-width="2.5"/><circle cx="5" cy="5" r="3" fill="none" stroke="#1d1b2e" stroke-width="2"/></svg>Familiar tools</div>
+<div class="ico el ic2" data-s="3-4"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#ffb547" stroke="#1d1b2e" stroke-width="1.5"/></svg>Favourite effects</div>
+<div class="ico el ic3" data-s="3-4"><svg viewBox="0 0 24 24"><path d="M4 4h12l4 4v12H4z" fill="none" stroke="#1d1b2e" stroke-width="2"/><path d="M8 4v5h7V4" fill="none" stroke="#1d1b2e" stroke-width="2"/></svg>Saved projects</div>
+<div class="ico el ic4" data-s="3-4"><svg viewBox="0 0 24 24"><path d="M3 18 9 12l4 4 8-9" fill="none" stroke="#ff6b4a" stroke-width="2.5"/></svg>Results she trusts</div>
+<div id="pm" class="el" data-s="4,8-10" style="right:5%;top:8%">Pr<small>Premiere Mobile</small></div>
 
-  aside.eval {
-    border-left: 1px solid var(--line);
-    background: var(--panel);
-    overflow: auto;
-    padding: 24px 22px;
-  }
-  aside.eval h2 { font-size: 18px; margin: 0 0 4px; letter-spacing: -0.01em; }
-  aside.eval .ft { font-size: 12px; color: var(--muted); margin-bottom: 18px; display: flex; justify-content: space-between; }
-  aside.eval .ft .pill { background: #f0eee6; color: var(--ink); padding: 2px 8px; border-radius: 999px; font-size: 11px; }
-  aside.eval section { margin-bottom: 10px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
-  aside.eval section > h4 {
-    font-size: 15px; letter-spacing: -0.005em; color: var(--ink); margin: 0;
-    font-weight: 600; padding: 12px 14px; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
-    user-select: none; background: #fff;
-  }
-  aside.eval section > h4:hover { background: #faf9f5; }
-  aside.eval section > h4 .chev { font-size: 12px; color: var(--muted); transition: transform .15s ease; }
-  aside.eval section.collapsed > h4 .chev { transform: rotate(-90deg); }
-  aside.eval section .body { padding: 0 14px 14px; }
-  aside.eval section.collapsed .body { display: none; }
-  aside.eval section p { font-size: 13px; line-height: 1.55; margin: 0; color: var(--ink); }
+<!-- Scene 2 -->
+<div class="notif el" data-s="5-6" style="left:4%;top:2%"><em style="background:#ff3b5c">▶</em>New video to post!</div>
+<div class="notif el" data-s="5-6" style="right:4%;top:9%;transition-delay:.3s"><em style="background:#3b7bff">31</em>Content deadline tomorrow.</div>
+<div class="notif el" data-s="6" style="left:3%;top:47%;transition-delay:.1s"><em style="background:#7fd1ae">✎</em>Plan · Film · Edit · Publish</div>
+<div class="notif el" data-s="6" style="left:3%;top:54%;transition-delay:.4s"><em style="background:#ffb547">💬</em>128 new comments</div>
+<div class="stat el" data-s="7"><div class="n"><span id="cnt">0</span>%</div><div class="bar"><i></i></div>
+ <div class="dots" id="dots"></div>
+ <p><b>of surveyed established creators reported work-related stress.</b></p><p class="src">Source: Kolsquare, 2025</p></div>
 
-  .rate-block {
-    margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line);
-  }
-  .rate-block h3 { font-size: 13px; margin: 0 0 10px; font-weight: 600; }
-  .slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-  .slider-row input[type=range] { flex: 1; accent-color: var(--ink); }
-  .slider-val {
-    width: 36px; height: 36px; border-radius: 999px;
-    background: var(--ink); color: #fff;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 600; font-size: 15px;
-  }
-  .scale-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
-  .impact-desc {
-    background: #faf9f5; border: 1px solid var(--line); border-radius: 8px;
-    padding: 10px 12px; font-size: 12px; color: var(--ink); margin-bottom: 14px;
-    min-height: 38px;
-  }
-  .nav-row { display: flex; gap: 8px; justify-content: flex-end; }
+<!-- Scene 3 -->
+<div class="bub el" data-s="9" style="left:4%;top:8%">Complicated?</div>
+<div class="bub el" data-s="9" style="left:2%;top:48%;transition-delay:.25s">Expensive?</div>
+<div id="bpro" class="bub el" data-s="9" style="right:22%;top:12%;transition-delay:.5s">Only for professionals?</div>
+<div class="src el" data-s="9" style="left:4%;top:3%">Perceptions before testing (Focus Group, qualitative research) — not facts about Premiere Mobile.</div>
+<div class="app pmapp el" id="pmui" data-s="10-14">
+ <div style="display:flex;justify-content:space-between;margin-bottom:6px"><b style="color:var(--pr)">Pr  Premiere Mobile</b><span>Export ↑</span></div>
+ <div class="scr"></div>
+ <div class="tl"><i style="background:#9999ff;width:85%"></i><i style="background:#d38cff;width:55%;margin-left:20%"></i><i style="background:#6ad7ff;width:40%;margin-left:8%"></i></div>
+ <span class="feat" data-s="10-14">⌖ Precision editing</span><span class="feat" data-s="10-14" style="transition-delay:.3s">▤ Layers</span><span class="feat" data-s="10-14" style="transition-delay:.6s">⇪ Export quality</span>
+</div>
+<div class="proof el" data-s="11" style="left:4%;top:4%">Cleaner than expected<small>Focus Group, qualitative research</small></div>
+<div class="proof el" data-s="11" style="right:4%;top:58%;transition-delay:.2s">Easy to navigate<small>Focus Group, qualitative research</small></div>
+<div class="proof el" data-s="11" style="left:4%;top:59%;transition-delay:.4s">Precision editing<small>Focus Group, qualitative research</small></div>
+<div class="proof el" data-s="11" style="left:4%;top:66%;transition-delay:.6s">Layer management<small>Focus Group, qualitative research</small></div>
 
-  .time-block {
-    background: #faf9f5; border: 1px solid var(--line); border-radius: 8px;
-    padding: 12px 14px; margin-bottom: 14px;
-  }
-  .time-block .row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-  .time-block .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
-  .time-block .weeks { font-size: 14px; font-weight: 600; color: var(--ink); }
-  .time-block .bar { height: 8px; background: #ece9df; border-radius: 999px; overflow: hidden; }
-  .time-block .bar .fill { height: 100%; background: var(--ink); border-radius: 999px; transition: width .25s ease; }
-  .time-block .scale { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 4px; }
-  .time-block.spike .bar .fill { background: repeating-linear-gradient(45deg, #c9c5bd 0 6px, #ece9df 6px 12px); }
-  .tech-sub { margin-top: 12px; }
-  .tech-sub h5 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 0 0 4px; font-weight: 600; }
-  .tech-sub p { font-size: 13px; line-height: 1.55; margin: 0 0 4px; }
-  .empty-state { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
-  .empty-state h2 { color: var(--ink); font-size: 17px; margin-bottom: 8px; }
+<!-- Scene 4 -->
+<div class="pill el" data-s="14" style="left:4%;top:6%">Familiarity</div>
+<div class="pill el" data-s="14" style="right:4%;top:6%;transition-delay:.2s">Easy-to-use editing</div>
+<div class="pill el" data-s="14" style="left:4%;top:60%;transition-delay:.4s">Existing workflow</div>
+<div class="pill el" data-s="14" style="right:4%;top:66%;transition-delay:.6s">Creative freedom</div>
 
-  .toast {
-    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 8px;
-    font-size: 13px; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 100;
-  }
-  .toast.show { opacity: 1; }
+<div id="final" class="el" data-s="17"><h1>Make room for a <span>new way</span> to create.</h1><p>Maya's workflow · Premiere Mobile</p></div>
+</div></div>
 
-  @media (max-width: 980px) {
-    main { grid-template-columns: 1fr; height: auto; }
-    aside.eval { border-left: none; border-top: 1px solid var(--line); }
-  }
-</style>
-</head>
-<body>
-<header>
-  <div>
-    <h1>Teachy Student Web, Prioritization Matrix</h1>
-    <div class="sub">Rate one feature at a time. Each card lands on the matrix by its real impact and complexity numbers.</div>
-  </div>
-  <div class="actions">
-    <span class="progress" id="progress">0 of 14</span>
-    <button id="resetBtn">Reset</button>
-    <button id="shareBtn" class="primary">Share my layout</button>
-  </div>
-</header>
+<div class="steps">
+<section class="step" data-s="0"><div></div></section>
+<section class="step" data-s="1"><div class="card"><div class="kicker">Opening — Meet Maya</div><p>This is Maya. She's been a content creator for about four years. She uses the same editing app she's always used. She knows where the tools are, which effects she likes and how to get the results she wants. And through the content she creates, she earns money.</p></div></section>
 
-<main>
-  <section class="board-wrap">
-    <div class="axis-row">
-      <div class="y-axis">Student Impact, low to high</div>
-      <div class="matrix-stack">
-        <div class="matrix" id="matrix">
-          <div class="quad-bg bg-strategic"></div>
-          <div class="quad-bg bg-quick"></div>
-          <div class="quad-bg bg-money"></div>
-          <div class="quad-bg bg-fill"></div>
-          <div class="midline-x"></div>
-          <div class="midline-y"></div>
-          <div class="quad-label lbl-strategic">Strategic Bets <small>high impact, high complexity</small></div>
-          <div class="quad-label lbl-quick">Quick Wins <small>high impact, low complexity</small></div>
-          <div class="quad-label lbl-money">Money Pit <small>low impact, high complexity</small></div>
-          <div class="quad-label lbl-fill">Fill ins <small>low impact, low complexity</small></div>
-        </div>
-        <div class="x-axis">Engineering Complexity, low to high</div>
-        <div class="legend">
-          <span><i style="background: var(--dot)"></i> Rated, click to re-rate</span>
-          <span><i style="background: var(--quick)"></i> Quick Wins</span>
-          <span><i style="background: var(--strategic)"></i> Strategic Bets</span>
-          <span><i style="background: var(--fill)"></i> Fill ins</span>
-          <span><i style="background: var(--money)"></i> Money Pit</span>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="step" data-s="2"><div class="card"><div class="kicker">Scene 1 — The audience insight</div><h2>Why change what works?</h2>
+<div class="say m"><b>MARIIA</b><span>"Would you love to change your editing app?"</span></div>
+<div class="say y"><b>MAYA</b><span>"No. When your workflow already works, why change it?"</span></div></div></section>
+<section class="step" data-s="3"><div class="card"><p>She's used to this. She knows how everything works. Learning a completely new app means starting over, and she's not sure she needs to.</p></div></section>
+<section class="step" data-s="4"><div class="card"><p>Then a Premiere Mobile icon appears, but Maya stays with her existing project.</p><p>This introduces the first important barrier: <b>familiarity and the perception that other apps might be complicated.</b> Creators are comfortable with what they already know. A new tool can feel like something they have to learn all over again.</p></div></section>
 
-  <aside class="eval" id="evalPanel">
-    <!-- populated by JS -->
-  </aside>
-</main>
+<section class="step" data-s="5"><div class="card"><div class="kicker">Scene 2 — The market insight</div><h2>Maya doesn't have time to start over</h2>
+<div class="say m"><b>MARIIA</b><span>"Why not try something new? Maybe another editing app could help."</span></div>
+<div class="say y"><b>MAYA</b><span>"I already have so much to do. I don't have time to learn everything again."</span></div></div></section>
+<section class="step" data-s="6"><div class="card"><p>Creating content comes with constant responsibilities. Maya needs to plan, film, edit and publish while keeping up with deadlines and her audience.</p></div></section>
+<section class="step" data-s="7"><div class="card"><p>And Maya isn't alone. Kolsquare's 2025 research found that work-related stress is common among established creators.</p>
+<div class="say m"><b>MARIIA</b><span>"So, learning a new app feels like another thing on your to-do list?"</span></div>
+<div class="say y"><b>MAYA</b><span>"Exactly. I need something that fits into my routine."</span></div></div></section>
 
-<div id="toast" class="toast"></div>
+<section class="step" data-s="8"><div class="card"><div class="kicker">Scene 3 — The Adobe insight</div><h2>Maybe it's not what Maya expected</h2>
+<div class="say m"><b>MARIIA</b><span>"Have you ever tried Premiere Mobile?"</span></div>
+<div class="say y"><b>MAYA</b><span>"Adobe? Isn't that difficult to use? I thought it was more for professionals."</span></div></div></section>
+<section class="step" data-s="9"><div class="card"><p class="src">Perceptions before testing (Focus Group, qualitative research). These represent perceptions from the focus group, not facts about Premiere Mobile.</p>
+<div class="say m"><b>MARIIA</b><span>"Why don't we take a look?"</span></div></div></section>
+<section class="step" data-s="10"><div class="card"><p>During our focus group, participants found Premiere Mobile cleaner and easier to use than they had expected. They appreciated its precision, layer management and export quality.</p></div></section>
+<section class="step" data-s="11"><div class="card"><div class="say y"><b>MAYA</b><span>"Wait... that's actually easier than I thought."</span></div>
+<div class="say m"><b>MARIIA</b><span>"So, would you switch?"</span></div>
+<div class="say y"><b>MAYA</b><span>"Maybe. But how would it fit into the way I already work?"</span></div></div></section>
+<section class="step" data-s="12"><div class="card"><p>A positive first impression can make creators curious. But trying a new app doesn't automatically mean changing the tools they rely on every day.</p></div></section>
 
+<section class="step" data-s="13"><div class="card"><div class="kicker">Scene 4 — The ending</div><h2>Make room for a new way to create</h2>
+<div class="say m"><b>MARIIA</b><span>"Maybe trying something new doesn't mean changing everything."</span></div></div></section>
+<section class="step" data-s="14"><div class="card"><p>Maya doesn't need to forget everything she already knows. She needs a tool that feels easy to use and can become part of the way she creates.</p></div></section>
+<section class="step" data-s="15"><div class="card"><div class="kicker">Final insight</div><p class="serif" style="font-size:22px;line-height:1.3">Creators are afraid to disrupt a workflow that already works for them. They need a reason to believe that trying something new can feel natural, easy and worth their time.</p></div></section>
+<section class="step" data-s="16"><div class="card"><div class="kicker">How might we…</div><h2>How might we make Premiere Mobile an easy and natural addition to creators' existing workflows?</h2></div></section>
+<section class="step" data-s="17"><div></div></section>
+</div>
+<div class="end-spacer"></div>
+</div>
 <script>
-  // Each feature carries Gio's complexity (1 to 10, mapped from eng-weeks) and the detail blocks.
-  // Placeholders for now, will be replaced with the final TEA-365 writeup numbers.
-  const FEATURE_NAMES = {
-    streaks: "Streaks (Daily Rewards)",
-    xp: "XP and Levels",
-    flashcards: "Flashcards",
-    slides: "Slides Generator",
-    mindmaps: "Mind Maps",
-    chatbot: "Chatbot",
-    topic: "Topic Summary",
-    quiz: "Quiz",
-    crossword: "Crossword",
-    studyplan: "Study Plan",
-    youtube: "YouTube Summary",
-    cheatsheet: "Cheat Sheet",
-    wordsearch: "Word Search",
-    conceptmap: "Concept Map"
-  };
-
-  const WEEKS = {
-    streaks: 1.6, xp: 1.2, flashcards: 1.6, slides: 3.2, mindmaps: 3.6,
-    chatbot: 4.8, topic: 1.6, quiz: 2.0, crossword: 2.0, studyplan: null,
-    youtube: 1.6, cheatsheet: 1.2, wordsearch: 1.6, conceptmap: 3.6
-  };
-  const MAX_WEEKS = Math.max(...Object.values(WEEKS).filter(v => v !== null));
-  const HOURS_PER_WEEK = 20;
-  const MAX_HOURS = Math.round(MAX_WEEKS * HOURS_PER_WEEK);
-  // Complexity is relative to the heaviest feature in the queue: chatbot at MAX_WEEKS = 10/10.
-  // Spike-required features get pinned at 9/10 to flag high uncertainty.
-  const COMPLEXITY = Object.fromEntries(Object.entries(WEEKS).map(([k, w]) => {
-    if (w === null) return [k, 9];
-    return [k, Math.max(1, Math.round((w / MAX_WEEKS) * 10))];
-  }));
-
-  const DESCRIPTIONS = {
-    streaks: "Daily streak counter with rewards that fire when students keep their study habit alive.",
-    xp: "Experience points and level progression as students complete activities across the app.",
-    flashcards: "AI generated flashcard decks with flip animation, built for spaced repetition study.",
-    slides: "AI generated slide decks built from a topic or source material, with a light in app editor.",
-    mindmaps: "AI generated mind maps that visualize topic structure as an interactive node graph.",
-    chatbot: "Conversational AI tutor that answers student doubts and works through problems step by step.",
-    topic: "AI generated written summary of any topic, with markdown formatting.",
-    quiz: "AI generated quizzes with multiple question types, instant feedback, and a results screen.",
-    crossword: "AI generated crossword puzzles for vocabulary and concept review.",
-    studyplan: "Calendar based study plan. Scope is ambiguous, could be AI generated schedules or manual student calendar entries.",
-    youtube: "AI summary of a YouTube video pulled from its URL. Feature existence in the web app is unconfirmed.",
-    cheatsheet: "AI generated condensed reference sheet for a topic, formatted as bullets or structured text.",
-    wordsearch: "AI generated word search puzzle for vocabulary practice with drag to select interaction.",
-    conceptmap: "AI generated concept map. May be a distinct feature from Mind Maps or an alias, needs confirmation."
-  };
-
-  const MAINTENANCE = {
-    streaks: "Backend is complete and stable, no active churn detected. Daily reset logic must stay server side.",
-    xp: "Backend is complete and stable, no active churn detected. Low ongoing maintenance burden.",
-    flashcards: "Stable codebase, low ongoing churn expected. Self contained feature.",
-    slides: "Hot zone, a dedicated team actively maintains Slides with 216+ commits. The Flutter version will need ongoing sync work to keep pace with web feature additions.",
-    mindmaps: "Backend is stable. The third party Flutter graph rendering library choice will set the long term maintenance baseline.",
-    chatbot: "Hot zone, a v2 rewrite shipped on June 15 with 64 commits of active development. API is currently unstable, expect rework during and after the port.",
-    topic: "Stable, no active development detected. Low maintenance burden.",
-    quiz: "Stable. May share question rendering logic with the Practice feature, so changes there can ripple in.",
-    crossword: "Stable backend, low churn. Custom grid rendering is the main maintenance surface.",
-    studyplan: "Sits on top of the Calendar codebase (222 commits, primarily teacher focused). Student view may be read only. Calendar boundary changes will affect this feature.",
-    youtube: "Feature existence is not yet confirmed. Maintenance profile cannot be assessed until the spike is done.",
-    cheatsheet: "Assumed stable with low churn. Custom text formatting needs may surface later.",
-    wordsearch: "Stable, low churn. Same custom grid pattern as Crossword.",
-    conceptmap: "Feature distinctness from Mind Maps is not yet confirmed. Maintenance profile is unknown until a spike clarifies it."
-  };
-
-  const DETAILS = {
-    streaks: {
-      porting: "Estimated at 1.6 weeks (32 eng-hours). Backend is fully complete with streak calculation, timezone handling, and rewards logic already in place. Flutter UI scope covers counter display component, countdown timer widget, and reward claim button with modal, a clean port from existing tracking logic.",
-      parity: "Counter display, reward claiming, and streak history are clean ports with no degradation. Push notifications for 'streak at risk' reminders are the one optional native addition not present in the web version.",
-      backend: "Fully shared with mobile: existing /api/student/streaks endpoint and reward claim API. No web only dependencies.",
-      risks: "Timezone handling is already solved in the backend. The main constraint is that daily reset logic must sync with the server and cannot be client calculated.",
-      sequencing: "Can ship in parallel with XP/Levels as independent systems. Recommended to bundle both for a cohesive gamification launch.",
-      usage: "104.6 unique users claimed streak rewards in the last 12 months. Mobile sessions account for 62% of total, signaling high mobile engagement potential."
-    },
-    xp: {
-      porting: "Estimated at 1.2 weeks (24 eng-hours). Backend is complete with XP calculation and level-up logic. Flutter UI scope is simpler than Streaks, progress bar widget, level display badge, and level-up animation modal with no timer component.",
-      parity: "XP bar, level display, and level-up celebrations are clean ports with no degraded interactions expected.",
-      backend: "Fully shared with mobile: /api/student/xp endpoint and level calculation service. No web only dependencies.",
-      risks: "Real-time XP updates require a decision between WebSocket and polling for instant feedback. Animation performance on low-end Android devices is a secondary concern.",
-      sequencing: "Can ship in parallel with Streaks. Recommended to bundle both features for a unified gamification launch.",
-      usage: "447.7 mobile level-ups recorded in the last 12 months, a strong mobile engagement signal."
-    },
-    flashcards: {
-      porting: "Estimated at 1.6 weeks (32 eng-hours). Backend is complete with generation API and flashcard storage. Flutter UI scope covers generation form, card deck viewer, flip animation using AnimatedSwitcher, and study session tracker.",
-      parity: "Card flipping and swipe gestures for next/previous card are clean ports that play to Flutter's native animation strengths. Offline caching of generated cards is a nice to have excluded from v1.",
-      backend: "Fully shared with mobile: /api/ai-tools/flashcards/generate, flashcard CRUD APIs, and the shared credit consumption API.",
-      risks: "Flip animation polish is critical for the expected mobile UX feel. Text overflow handling for long-form flashcard content needs attention.",
-      sequencing: "Ships independently. Recommended after Streaks/XP so the engagement foundation is in place first.",
-      usage: "359 users generated flashcards in the last 12 months, averaging approximately 3.5 uses per mobile student."
-    },
-    slides: {
-      porting: "Estimated at 3.2 weeks (64 eng-hours). Backend is complete with generation API and template system. Flutter UI scope includes a multi step generation form, slide viewer/carousel, and a basic slide editor for text and image adjustments, more complex than simple tools due to the editor component.",
-      parity: "Slide viewing and carousel navigation are clean ports. The slide editor will be simplified on mobile due to smaller touch targets and limited formatting options. Export/share functionality works cleanly on mobile.",
-      backend: "Shared with mobile: /api/ai-tools/slides/generate and slide template service. A dedicated team actively maintains the Slides feature (216+ commits), creating a high ongoing alignment burden for the Flutter version.",
-      risks: "Active development pace means the Flutter version may lag behind web feature additions. Editor UX requires mobile specific simplification. Image handling and rendering performance need validation.",
-      sequencing: "High maintenance feature, recommended after simpler AI tools prove mobile adoption. Depends on credit management UI being in place.",
-      usage: "4,149 users generated slides in the last 12 months, averaging approximately 39.7 uses per mobile student, the number-one AI tool by usage."
-    },
-    mindmaps: {
-      porting: "Estimated at 3.6 weeks (72 eng-hours). Backend is complete with graph generation API. Flutter UI requires a generation form, a graph visualization widget (needs flutter_graph or equivalent package), zoom/pan controls, and node tap interactions, no built-in Flutter primitive covers this.",
-      parity: "Pinch to zoom and pan navigation are critical gestures that require mobile specific implementation. Tap to expand/collapse nodes ports cleanly. Node editing may need simplification versus the web experience.",
-      backend: "Fully shared with mobile: /api/ai-tools/mindmap/generate and graph data structure. A third party Flutter graph rendering library is required and not yet selected.",
-      risks: "Graph library selection and rendering performance on complex maps are the primary unknowns. Touch target sizing for small nodes on phone screens and memory management for large mind maps are additional concerns.",
-      sequencing: "Ships independently. Recommended after simpler tools (Flashcards, Quiz) to first validate mobile AI tool adoption patterns.",
-      usage: "Tracked only within the aggregate 'Used AI Tool' event, not individually in the top 5. Estimated under 200 users based on aggregate distribution."
-    },
-    chatbot: {
-      porting: "Estimated at 4.8 weeks (96 eng-hours). Backend covers chat API, streaming responses, and session management. Flutter UI scope is broad: chat message list, input field, streaming display via StreamBuilder, session switcher, and hearts/hints system across multiple screens.",
-      parity: "Chat UI is a mobile native pattern and streams well with Flutter StreamBuilder. Push notifications for tutor replies and camera integration for homework photo uploads are native additions not present in the web version.",
-      backend: "Shared with mobile: /api/student-tutor/chat and streaming SSE endpoint. A v2 rewrite shipped on June 15 with 64 commits of active development, making the API currently unstable for a parallel port.",
-      risks: "The recent v2 rewrite risks breaking changes during Flutter development. Streaming must use SSE or WebSocket (different from the web Vercel AI SDK approach). Real-time state sync and high credit burn rate per message add further complexity.",
-      sequencing: "Deferred to Phase 2. Recommended to wait 2 to 3 months post v2 launch for API stabilization. Depends on credit management UI and streaming infrastructure decisions.",
-      usage: "'Student Tutor Send Doubt' events are tracked in Mixpanel but not available in the provided data. Estimated moderate usage, not in the top 5 AI tools by volume."
-    },
-    topic: {
-      porting: "Estimated at 1.6 weeks (32 eng-hours). Backend is complete with summary generation API. Flutter UI scope is simple: a topic input form with customization options and a generated text display widget with markdown/rich text rendering.",
-      parity: "Form input, text display, and copy/share are clean ports that map directly to native mobile patterns. Markdown rendering may require the flutter_markdown package.",
-      backend: "Fully shared with mobile: /api/ai-tools/topic-summary/generate and the shared credit consumption API.",
-      risks: "Text overflow and readability on small screens are the main concerns. Markdown formatting edge cases need validation.",
-      sequencing: "Ships independently. Recommended as an early win given its simplicity and high usage.",
-      usage: "747 users generated topic summaries in the last 12 months, averaging approximately 7.2 uses per mobile student."
-    },
-    quiz: {
-      porting: "Estimated at 2.0 weeks (40 eng-hours). Backend is complete with quiz generation API and question validation. Flutter UI covers generation form (topic, difficulty, quantity), question display with options, answer validation, instant feedback, and a results summary screen.",
-      parity: "Quiz taking is a mobile native interaction pattern, touch friendly option selection with radio buttons and cards ports cleanly. MathJax rendering for math questions is a potential degraded interaction requiring a Flutter compatible math rendering solution.",
-      backend: "Fully shared with mobile: /api/ai-tools/quiz/generate and grading logic. May share question rendering logic with the Practice feature.",
-      risks: "Question type variety (MCQ, T/F, fill in blank) increases UI scope. Math rendering and timer implementation for timed quizzes are secondary risks.",
-      sequencing: "Ships independently. Recommended after Flashcards given similar complexity.",
-      usage: "541 users generated quizzes in the last 12 months, averaging approximately 5.2 uses per mobile student."
-    },
-    crossword: {
-      porting: "Estimated at 2.0 weeks (40 eng-hours). Backend is complete with generation API and grid solver. Flutter UI requires a custom grid display widget (CustomPainter for cells), clue list, cell tap/input handling, and validation feedback. Web already works on mobile via responsive design.",
-      parity: "Grid interaction on touch ports cleanly. On screen keyboard UX for letter input is a mobile specific addition. Grid complexity may need to be capped for phone screen sizes.",
-      backend: "Fully shared with mobile: /api/ai-tools/crossword/generate and grid validation API.",
-      risks: "Custom grid rendering with Flutter CustomPainter is non trivial. Touch target sizing for small cells and keyboard management (focus, input switching between cells) are the primary risks.",
-      sequencing: "Ships independently. Recommended in Phase 2 or 3 given lower priority versus core tools.",
-      usage: "Not in the top 8 individually tracked AI tools. Estimated under 100 users based on aggregate 'Used AI Tool' distribution."
-    },
-    studyplan: {
-      porting: "Requires a discovery spike before estimation. It is unclear whether the backend serves AI generated study plans or manual calendar CRUD entries, and the answer fundamentally changes the Flutter UI scope and effort.",
-      parity: "Calendar viewing works on mobile. Plan creation complexity is unknown until the feature scope is defined. Study reminder push notifications are an expected native addition.",
-      backend: "Depends on calendar infrastructure (222 commits, primarily teacher focused), the student view may be read only. If AI generated, credit consumption and a generation API are involved; if manual, simple CRUD suffices.",
-      risks: "Scope ambiguity is the primary blocker: AI generated schedules versus student created calendar events are fundamentally different products. Integration with the existing 222 commit Calendar codebase adds complexity regardless.",
-      sequencing: "Blocked until a discovery spike clarifies scope and the Calendar feature boundaries are understood.",
-      usage: "A 'Clicked Create Study Plan' event exists in Mixpanel, confirming the feature is used, but the usage count was not available in the provided data set."
-    },
-    youtube: {
-      porting: "Estimated at 1.6 weeks (32 eng-hours) assuming the feature exists in the web app. Backend would cover YouTube transcript extraction and summarization API. Flutter UI scope is simple: URL input field, optional video preview via youtube_player_flutter, and a summary display widget.",
-      parity: "URL input and text display are clean ports. Video embedding is optional and would use a native Flutter YouTube package.",
-      backend: "Existence of /api/ai-tools/youtube-summary needs verification before any backend assumptions can be made. If confirmed, it would be shared with mobile plus the credit consumption API.",
-      risks: "The feature may not be launched yet, it was absent from all Mixpanel data and thread discussions. YouTube API rate limits and transcript availability are backend level risks if the feature does exist.",
-      sequencing: "Blocked until the feature is confirmed to exist in the web app. If confirmed, it ships independently.",
-      usage: "Not found in 'Used AI Tool' Mixpanel data for the last 12 months, the feature may not be launched or has zero usage to date."
-    },
-    cheatsheet: {
-      porting: "Estimated at 1.2 weeks (24 eng-hours). Backend is assumed complete with a cheat sheet generation API and formatting logic. Flutter UI scope mirrors Topic Summary: a generation form with topic input and a formatted text display using markdown or structured bullet points.",
-      parity: "Form input, text display, and copy/share are clean ports with full parity. Text based output formats well on mobile.",
-      backend: "Assumed shared with mobile: /api/ai-tools/cheat-sheet/generate and the shared credit consumption API.",
-      risks: "Cheat sheet layout readability on small screens is the primary concern. Custom text formatting beyond standard markdown may be needed depending on the output structure.",
-      sequencing: "Ships independently. Recommended in Phase 3 given lower priority relative to core tools.",
-      usage: "Not in the top 8 individually tracked AI tools. Estimated under 150 users based on aggregate 'Used AI Tool' distribution."
-    },
-    wordsearch: {
-      porting: "Estimated at 1.6 weeks (32 eng-hours). Backend is complete with generation API and grid/word list. Flutter UI requires a grid display widget similar to Crossword, a word list panel, drag gesture handling for word selection, and validation feedback.",
-      parity: "Touch based word selection via drag gesture is a mobile native interaction that ports cleanly. Grid visualization works well on mobile.",
-      backend: "Fully shared with mobile: /api/ai-tools/word-search/generate and validation API.",
-      risks: "Drag gesture implementation via Flutter GestureDetector requires care. Grid rendering with CustomPainter (same pattern as Crossword) and word highlighting visual feedback are additional implementation risks.",
-      sequencing: "Ships independently. Recommended in Phase 3 given lower priority versus core tools.",
-      usage: "Not in the top 8 individually tracked AI tools. Estimated under 100 users based on aggregate distribution."
-    },
-    conceptmap: {
-      porting: "Estimated at 3.6 weeks (72 eng-hours) assuming this is a distinct feature from Mind Maps. Backend would require a concept map generation API and graph structure. Flutter UI would follow the same approach as Mind Maps and may share the graph rendering library.",
-      parity: "Zoom/pan gesture controls are critical and require mobile specific implementation, same as Mind Maps. Node editing would be simplified versus the web version.",
-      backend: "Needs verification: it is unclear whether Concept Map is a distinct feature or an alias for Mind Maps. If distinct, a separate API endpoint and graph rendering library are required.",
-      risks: "The feature may be a duplicate of Mind Maps, in which case the estimate is moot. A spike is needed to confirm distinctness. If distinct, all Mind Maps risks apply: graph library selection, rendering performance, and memory management.",
-      sequencing: "Blocked until feature distinctness is confirmed. If confirmed as a separate feature, sequencing follows the same recommendation as Mind Maps.",
-      usage: "Not found as a separate feature in Mixpanel data, may be tracked under Mind Maps or not yet launched."
-    }
-  };
-
-  const FEATURES = Object.keys(FEATURE_NAMES).map(id => ({
-    id, name: FEATURE_NAMES[id], complexity: COMPLEXITY[id]
-  }));
-
-  const IMPACT_DESCRIPTIONS = {
-    1: "Negligible. Few students would notice if it shipped.",
-    2: "Minor lift. Nice to have, not a needle mover.",
-    3: "Meaningful. Improves the experience for a real share of students.",
-    4: "High. Drives engagement or learning outcomes for most students.",
-    5: "Critical. Either unblocks a major use case or anchors the product."
-  };
-
-  const STORAGE_KEY = "teachy-matrix-guided-v1";
-  const ORDER_KEY = "teachy-matrix-order-v1";
-  const COLLAPSE_KEY = "teachy-matrix-collapsed-v2";
-
-  function loadCollapsed() {
-    try {
-      const raw = localStorage.getItem(COLLAPSE_KEY);
-      if (raw) return new Set(JSON.parse(raw));
-    } catch (_) {}
-    return new Set(["technical", "maintenance"]);
-  }
-  function saveCollapsed(set) {
-    try { localStorage.setItem(COLLAPSE_KEY, JSON.stringify([...set])); } catch (_) {}
-  }
-  let collapsed = loadCollapsed();
-
-  function defaultState() {
-    return {}; // id -> impact (1..5)
-  }
-
-  function loadState() {
-    const hash = window.location.hash.replace(/^#/, "");
-    if (hash) {
-      try {
-        const decoded = JSON.parse(atob(decodeURIComponent(hash)));
-        if (decoded && typeof decoded === "object") return decoded;
-      } catch (_) {}
-    }
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch (_) {}
-    return defaultState();
-  }
-
-  function saveState(state) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
-  }
-
-  function loadOrder() {
-    try {
-      const raw = localStorage.getItem(ORDER_KEY);
-      if (raw) {
-        const arr = JSON.parse(raw);
-        if (Array.isArray(arr) && arr.length === FEATURES.length) return arr;
-      }
-    } catch (_) {}
-    // Generate random order
-    const ids = FEATURES.map(f => f.id);
-    for (let i = ids.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [ids[i], ids[j]] = [ids[j], ids[i]];
-    }
-    localStorage.setItem(ORDER_KEY, JSON.stringify(ids));
-    return ids;
-  }
-
-  let state = loadState();
-  let order = loadOrder();
-  let activeId = null;
-
-  function nextUnrated() {
-    return order.find(id => state[id] === undefined);
-  }
-
-  function ratedCount() {
-    return Object.keys(state).filter(k => state[k] !== undefined).length;
-  }
-
-  function render() {
-    renderMatrix();
-    renderProgress();
-    renderEval();
-    saveState(state);
-  }
-
-  function renderProgress() {
-    document.getElementById("progress").textContent = `${ratedCount()} of ${FEATURES.length}`;
-  }
-
-  function renderMatrix() {
-    const matrix = document.getElementById("matrix");
-    // remove existing dots
-    matrix.querySelectorAll(".dot").forEach(n => n.remove());
-    const groups = new Map();
-    FEATURES.forEach(f => {
-      const impact = state[f.id];
-      if (impact === undefined) return;
-      const key = `${f.complexity}|${impact}`;
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push({ f, impact });
-    });
-    groups.forEach(items => {
-      const n = items.length;
-      const x = ((items[0].f.complexity - 1) / 9) * 100;
-      const y = ((items[0].impact - 1) / 4) * 100;
-      let xAnchor = "";
-      if (x > 75) xAnchor = "x-right";
-      else if (x < 15) xAnchor = "x-left";
-      let yAnchor = "";
-      if (y > 85) yAnchor = "y-top";
-      else if (y < 15) yAnchor = "y-bottom";
-      const step = 28;
-      const center = (n - 1) / 2;
-      // y-top anchors translate the dot downward, so stagger downward only (positive oy = visually down)
-      // y-bottom anchors translate the dot upward, so stagger upward only
-      // default centered, stagger symmetrically
-      const mode = yAnchor === "y-top" ? "down" : yAnchor === "y-bottom" ? "up" : "center";
-      items.forEach((it, i) => {
-        const ox = n > 1 ? (i % 2 === 0 ? 1 : -1) * 6 : 0;
-        let oy = 0;
-        if (n > 1) {
-          if (mode === "down") oy = i * step;
-          else if (mode === "up") oy = -i * step;
-          else oy = (i - center) * step;
-        }
-        const dot = document.createElement("div");
-        dot.className = ["dot", xAnchor, yAnchor, activeId === it.f.id ? "active" : ""].filter(Boolean).join(" ");
-        dot.style.left = x + "%";
-        dot.style.bottom = y + "%";
-        dot.style.setProperty("--ox", ox + "px");
-        dot.style.setProperty("--oy", oy + "px");
-        dot.textContent = it.f.name.replace(/\s*\(.*?\)\s*/g, "");
-        dot.title = `${it.f.name}, impact ${it.impact}, complexity ${it.f.complexity}`;
-        dot.addEventListener("click", () => { activeId = it.f.id; render(); });
-        matrix.appendChild(dot);
-      });
-    });
-  }
-
-  function renderEval() {
-    const root = document.getElementById("evalPanel");
-    let id = activeId;
-    if (!id) id = nextUnrated();
-    if (!id) {
-      root.innerHTML = `
-        <div class="empty-state">
-          <h2>All 14 features rated.</h2>
-          <p>Take a final look at the matrix. Click any card on the board to re-rate it. When you are done, hit <strong>Share my layout</strong> at the top right and send the link back to Juan.</p>
-        </div>
-      `;
-      return;
-    }
-    activeId = id;
-    const f = FEATURES.find(x => x.id === id);
-    const d = DETAILS[id] || {
-      porting: "TODO, awaiting Gio's final writeup.",
-      parity: "TODO",
-      backend: "TODO",
-      risks: "TODO",
-      sequencing: "TODO",
-      usage: "TODO"
-    };
-    const currentImpact = state[id] !== undefined ? state[id] : 3;
-    const weeks = WEEKS[id];
-    const isSpike = weeks === null;
-    const pct = (f.complexity / 10) * 100;
-    const weeksLabel = isSpike ? "spike required" : `${Math.round(weeks * HOURS_PER_WEEK)} eng-hours`;
-    const complexityBlock = `
-      <div class="time-block ${isSpike ? 'spike' : ''}">
-        <div class="row">
-          <span class="label">Engineering Complexity</span>
-          <span class="weeks">${f.complexity} / 10 <small style="font-weight:400;color:var(--muted);font-size:11px;margin-left:4px">(${weeksLabel})</small></span>
-        </div>
-        <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
-        <div class="scale"><span>low</span><span>high</span></div>
-      </div>
-    `;
-    root.innerHTML = `
-      <h2>${f.name}</h2>
-      <div class="ft">
-        <span>Feature profile</span>
-        <span class="pill">Complexity ${f.complexity} / 10</span>
-      </div>
-
-      <section data-key="description"><h4>Description<span class="chev">▾</span></h4><div class="body"><p>${DESCRIPTIONS[id]}</p></div></section>
-
-      <section data-key="mixpanel"><h4>Current Mixpanel Usage<span class="chev">▾</span></h4><div class="body"><p>${d.usage}</p></div></section>
-
-      <section data-key="technical">
-        <h4>Technical Details<span class="chev">▾</span></h4>
-        <div style="padding: 0 14px 4px">${complexityBlock}</div>
-        <div class="body">
-          <div class="tech-sub"><h5>Porting Estimate</h5><p>${d.porting}</p></div>
-          <div class="tech-sub"><h5>Parity Check</h5><p>${d.parity}</p></div>
-          <div class="tech-sub"><h5>Backend Dependencies</h5><p>${d.backend}</p></div>
-          <div class="tech-sub"><h5>Known Risks</h5><p>${d.risks}</p></div>
-        </div>
-      </section>
-
-      <section data-key="maintenance">
-        <h4>Maintenance Complexity<span class="chev">▾</span></h4>
-        <div class="body">
-          <p>${MAINTENANCE[id]}</p>
-          <div class="tech-sub"><h5>Sequencing</h5><p>${d.sequencing}</p></div>
-        </div>
-      </section>
-
-      <div class="rate-block">
-        <h3>How much student impact does this feature carry?</h3>
-        <div class="slider-row">
-          <input type="range" id="impact" min="1" max="5" step="1" value="${currentImpact}" />
-          <span class="slider-val" id="impactVal">${currentImpact}</span>
-        </div>
-        <div class="scale-labels">
-          <span>1, negligible</span>
-          <span>3, meaningful</span>
-          <span>5, critical</span>
-        </div>
-        <div class="impact-desc" id="impactDesc">${IMPACT_DESCRIPTIONS[currentImpact]}</div>
-        <div class="nav-row">
-          ${state[id] !== undefined ? '<button id="clearBtn">Clear rating</button>' : ''}
-          <button id="confirmBtn" class="primary">${state[id] !== undefined ? 'Update' : 'Confirm and next'}</button>
-        </div>
-      </div>
-    `;
-
-    root.querySelectorAll("aside.eval section[data-key]").forEach(sec => {
-      const key = sec.getAttribute("data-key");
-      if (collapsed.has(key)) sec.classList.add("collapsed");
-      sec.querySelector("h4").addEventListener("click", () => {
-        sec.classList.toggle("collapsed");
-        if (sec.classList.contains("collapsed")) collapsed.add(key); else collapsed.delete(key);
-        saveCollapsed(collapsed);
-      });
-    });
-
-    const slider = document.getElementById("impact");
-    const val = document.getElementById("impactVal");
-    const desc = document.getElementById("impactDesc");
-    slider.addEventListener("input", () => {
-      val.textContent = slider.value;
-      desc.textContent = IMPACT_DESCRIPTIONS[slider.value];
-    });
-    document.getElementById("confirmBtn").addEventListener("click", () => {
-      state[id] = parseInt(slider.value, 10);
-      activeId = null;
-      render();
-    });
-    const clearBtn = document.getElementById("clearBtn");
-    if (clearBtn) clearBtn.addEventListener("click", () => {
-      delete state[id];
-      activeId = null;
-      render();
-    });
-  }
-
-  function toast(msg) {
-    const t = document.getElementById("toast");
-    t.textContent = msg;
-    t.classList.add("show");
-    setTimeout(() => t.classList.remove("show"), 2200);
-  }
-
-  document.getElementById("shareBtn").addEventListener("click", async () => {
-    const payload = encodeURIComponent(btoa(JSON.stringify(state)));
-    const url = `${window.location.origin}${window.location.pathname}#${payload}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      toast("Link copied. Paste it back to Juan.");
-    } catch {
-      window.prompt("Copy this link and send it to Juan", url);
-    }
-  });
-
-  const resetBtn = document.getElementById("resetBtn");
-  let resetArmed = false;
-  let resetTimer = null;
-  resetBtn.addEventListener("click", () => {
-    if (!resetArmed) {
-      resetArmed = true;
-      resetBtn.textContent = "Click again to confirm";
-      resetBtn.style.borderColor = "#c0392b";
-      resetBtn.style.color = "#c0392b";
-      resetTimer = setTimeout(() => {
-        resetArmed = false;
-        resetBtn.textContent = "Reset";
-        resetBtn.style.borderColor = "";
-        resetBtn.style.color = "";
-      }, 3000);
-      return;
-    }
-    clearTimeout(resetTimer);
-    resetArmed = false;
-    resetBtn.textContent = "Reset";
-    resetBtn.style.borderColor = "";
-    resetBtn.style.color = "";
-    state = {};
-    activeId = null;
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem(ORDER_KEY);
-      localStorage.removeItem(COLLAPSE_KEY);
-    } catch (_) {}
-    collapsed = loadCollapsed();
-    order = loadOrder();
-    history.replaceState(null, "", window.location.pathname);
-    render();
-    toast("Reset complete.");
-  });
-
-  render();
+const stage=document.getElementById('stage');
+const parse=s=>{const out=new Set();s.split(',').forEach(p=>{const[a,b]=p.split('-').map(Number);for(let i=a;i<=(b??a);i++)out.add(i)});return out};
+const els=[...document.querySelectorAll('[data-s]')].filter(e=>!e.classList.contains('step')).map(e=>({e,s:parse(e.dataset.s)}));
+const dots=document.getElementById('dots');for(let i=0;i<20;i++)dots.appendChild(document.createElement('i'));
+let cur=-1,raf;
+function countUp(){cancelAnimationFrame(raf);const t0=performance.now(),c=document.getElementById('cnt'),d=[...dots.children];
+ const tick=t=>{const k=Math.min(1,(t-t0)/1400),v=Math.round(65*(1-Math.pow(1-k,3)));c.textContent=v;d.forEach((x,i)=>x.classList.toggle('f',i<Math.round(v/5)));if(k<1)raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick)}
+function set(n){if(n===cur)return;cur=n;
+ els.forEach(({e,s})=>e.classList.toggle('v',s.has(n)));
+ stage.className='stage '+(n>=2&&n<=4?'st-ui edit':'')+(n>=10&&n<=14?' st-pm edit':'')+(n>=5&&n<=7?' stress':'');
+ document.getElementById('phone').setAttribute('fill',n>=10?'#9999ff':'#9fd8ff');
+ if(n===7)countUp();}
+const steps=[...document.querySelectorAll('.step')];
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){steps.forEach(s=>s.classList.remove('on'));x.target.classList.add('on');set(+x.target.dataset.s)}}),{rootMargin:'-45% 0px -45% 0px'});
+steps.forEach(s=>io.observe(s));set(0);
 </script>
-</body>
-</html>
+</body></html>
