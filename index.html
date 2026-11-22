@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/maya-idle.webp">
 <style>
-:root{--bg:#faf5ef;--ink:#1d1b2e;--mute:#6b6880;--pr:#9999ff;--prd:#2a1a5e;--acc:#ff6b4a;--mar:#ffb547}
+:root{--bg:#fff4f8;--ink:#22142e;--mute:#76627f;--pr:#a78bfa;--prd:#2d1458;--acc:#f0287f;--mar:#ffc83d}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:clip}
 body{background:var(--bg);color:var(--ink);font:17px/1.55 'DM Sans',system-ui,sans-serif}
@@ -48,9 +48,9 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 #maya:after{content:'';position:absolute;left:5%;right:5%;bottom:-2.5%;height:5%;border-radius:50%;background:radial-gradient(rgba(29,27,46,.25),transparent 70%);z-index:-1}
 .side #maya{left:27%}
 .side .arch{transform:translateX(-95%) scale(.9)}
-#mariia{right:3%;top:33%;height:17%;aspect-ratio:.89;transform:translateX(160%) rotate(10deg);z-index:4}
+#mariia{right:3%;top:33%;height:17%;aspect-ratio:1.3;transform:translateX(160%) rotate(10deg);z-index:4}
 #mariia.v{transform:none}
-#mariia img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 10px rgba(42,26,94,.2))}
+#mariia img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .4s;filter:drop-shadow(0 10px 12px rgba(120,20,80,.25))}#mariia img.on{opacity:1}
 .side #mariia{right:auto;left:2%;top:40%}
 .tag{background:#fff;border-radius:14px;padding:7px 12px 7px 8px;font-size:13px;font-weight:700;white-space:nowrap;transform:translateY(14px) scale(.85);box-shadow:0 10px 24px -8px rgba(42,26,94,.3);display:flex;gap:8px;align-items:center;z-index:4}
 .tag i{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:14px}
@@ -61,7 +61,7 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 .phone .in{position:relative;height:100%;border-radius:24px;overflow:hidden;background:#f5f4f8;color:#222;display:flex;flex-direction:column}
 .phone .sb{display:flex;justify-content:space-between;padding:6px 14px 2px;font-weight:700;font-size:8px}
 .phone .hd{display:flex;align-items:center;justify-content:space-between;padding:4px 10px;font-weight:700;font-size:10px}
-.phone .hd .x{background:#ff6b4a;color:#fff;border-radius:99px;padding:2px 8px;font-size:8px}
+.phone .hd .x{background:#f0287f;color:#fff;border-radius:99px;padding:2px 8px;font-size:8px}
 .pv{margin:0 8px;border-radius:8px;aspect-ratio:9/12;position:relative;overflow:hidden;background:linear-gradient(160deg,#ffb38a,#ff6b8a 55%,#7a4bd6)}
 .pv .sun{position:absolute;width:36%;aspect-ratio:1;border-radius:50%;left:56%;top:14%;background:#ffe9a8;box-shadow:0 0 30px #ffd36e}
 .pv .hill{position:absolute;left:-10%;right:-10%;bottom:-20%;height:55%;border-radius:50% 50% 0 0;background:#3a2766}
@@ -78,9 +78,9 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 .trk.v1 i{flex:1;border-radius:3px;background-size:cover;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 .trk.v1 i:nth-child(3n+1){background:linear-gradient(160deg,#ffb38a,#ff6b8a 60%,#7a4bd6)}
 .trk.v1 i:nth-child(3n+2){background:linear-gradient(160deg,#9fd8ff,#5b8cff 60%,#2a1a5e)}
-.trk.v1 i:nth-child(3n){background:linear-gradient(160deg,#ffe3a0,#ffb547 60%,#c75b2a)}
+.trk.v1 i:nth-child(3n){background:linear-gradient(160deg,#fff0b8,#ffc83d 60%,#d9488f)}
 .trk.v1 .sel{outline:2px solid #ffcc00;outline-offset:-1px}
-.trk.t1{height:12px}.trk.t1 i{border-radius:3px;background:#ff6b4a;color:#fff;font:700 6px/12px 'DM Sans';padding-left:3px;font-style:normal}
+.trk.t1{height:12px}.trk.t1 i{border-radius:3px;background:#f0287f;color:#fff;font:700 6px/12px 'DM Sans';padding-left:3px;font-style:normal}
 .trk.fx{height:10px}.trk.fx i{border-radius:3px;background:#7fd1ae}
 .trk.au{height:16px;border-radius:3px;background:#5aa9ff33;align-items:center;gap:1px;padding:0 2px;width:180%}
 .trk.au i{flex:1;background:#3b7bff;border-radius:1px}
@@ -104,7 +104,7 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 .pm .lab{display:inline-flex;gap:4px;align-items:center}
 .pm .logo{width:16px;height:16px;border-radius:4px;background:#2a1a5e;border:1.5px solid #9999ff;color:#9999ff;font:800 8px/13px 'DM Sans';text-align:center}
 .feat{position:absolute;background:#2a1a5e;color:#fff;border-radius:12px;padding:6px 10px;font-weight:700;font-size:12px;white-space:nowrap;box-shadow:0 10px 24px -8px rgba(42,26,94,.5);opacity:0;transform:translateX(20px);transition:opacity .5s,transform .6s;display:flex;gap:6px;align-items:center;z-index:6}
-.feat:before{content:'';width:8px;height:8px;border-radius:50%;background:var(--pr);box-shadow:0 0 0 3px #9999ff55}
+.feat:before{content:'';width:8px;height:8px;border-radius:50%;background:var(--pr);box-shadow:0 0 0 3px #a78bfa55}
 .feat.v{opacity:1;transform:none}
 /* icons scene */
 .ico{width:21%;text-align:center;font-size:11px;font-weight:700;line-height:1.2;transform:translateY(20px) scale(.7);z-index:4}
@@ -127,7 +127,7 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 .ring .n{position:absolute;inset:0;display:grid;place-items:center;font-family:'DM Serif Display';font-size:clamp(48px,14vw,84px);color:var(--acc);line-height:1}
 .ring .n sup{font-size:.45em;vertical-align:top}
 .people{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;width:46%;max-width:240px}
-.people i{aspect-ratio:.6;background:#d9cbbf;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Ccircle cx='3' cy='1.8' r='1.6'/%3E%3Cpath d='M0 10V5.5C0 4.4.9 3.8 3 3.8s3 .6 3 1.7V10z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Ccircle cx='3' cy='1.8' r='1.6'/%3E%3Cpath d='M0 10V5.5C0 4.4.9 3.8 3 3.8s3 .6 3 1.7V10z'/%3E%3C/svg%3E") center/contain no-repeat;transition:background .3s,transform .3s}
+.people i{aspect-ratio:.6;background:#ecd3df;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Ccircle cx='3' cy='1.8' r='1.6'/%3E%3Cpath d='M0 10V5.5C0 4.4.9 3.8 3 3.8s3 .6 3 1.7V10z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Ccircle cx='3' cy='1.8' r='1.6'/%3E%3Cpath d='M0 10V5.5C0 4.4.9 3.8 3 3.8s3 .6 3 1.7V10z'/%3E%3C/svg%3E") center/contain no-repeat;transition:background .3s,transform .3s}
 .people i.f{background:var(--acc);transform:translateY(-1px)}
 .stat p{margin-top:10px;font-size:15px}
 .legend{display:flex;gap:14px;justify-content:center;font-size:11px;color:var(--mute);margin-top:6px}
@@ -214,7 +214,7 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 <div id="maya" class="el" data-s="0-6,8-15" aria-label="Maya">
  <img src="img/maya-idle.webp" data-pose="idle" alt="Maya" class="on"><img src="img/maya-edit.webp" data-pose="edit" alt="" loading="lazy"><img src="img/maya-stress.webp" data-pose="stress" alt="" loading="lazy"><img src="img/maya-wow.webp" data-pose="wow" alt="" loading="lazy">
 </div>
-<div id="mariia" class="el" data-s="2,5-6,8-14"><img src="img/mariia.webp" alt="Mariia, the mascot" loading="lazy"></div>
+<div id="mariia" class="el" data-s="1-2,5-6,8-14"><img src="img/mariia-laptop.webp" data-mp="laptop" alt="Mariia, the mascot"><img src="img/mariia-clapperboard.webp" data-mp="clapperboard" alt="" loading="lazy"><img src="img/mariia-calendar.webp" data-mp="calendar" alt="" loading="lazy"><img src="img/mariia-binoculars.webp" data-mp="binoculars" alt="" loading="lazy"><img src="img/mariia-lightbulb.webp" data-mp="lightbulb" alt="" loading="lazy"><img src="img/mariia-chart.webp" data-mp="chart" alt="" loading="lazy"><img src="img/mariia-confetti.webp" data-mp="confetti" alt="" loading="lazy"></div>
 
 <div class="tag el t1" data-s="1" style="left:4%;top:9%"><i style="background:#ffe2a8">🗓</i>4 years creating</div>
 <div class="tag el t2" data-s="1" style="right:4%;top:15%;transition-delay:.1s"><i style="background:#ffd3c2">✂︎</i>same app</div>
@@ -229,20 +229,20 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 <div class="tracks"><div class="trk v1"><i></i><i></i><i></i><i class="sel"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="trk t1"><i style="flex:0 0 22%;margin-left:12%">Title</i><i style="flex:0 0 16%;margin-left:20%">Caption</i></div><div class="trk au"><i style="height:20%"></i><i style="height:57%"></i><i style="height:24%"></i><i style="height:61%"></i><i style="height:28%"></i><i style="height:65%"></i><i style="height:32%"></i><i style="height:69%"></i><i style="height:36%"></i><i style="height:73%"></i><i style="height:40%"></i><i style="height:77%"></i><i style="height:44%"></i><i style="height:81%"></i><i style="height:48%"></i><i style="height:85%"></i><i style="height:52%"></i><i style="height:89%"></i><i style="height:56%"></i><i style="height:23%"></i><i style="height:60%"></i><i style="height:27%"></i><i style="height:64%"></i><i style="height:31%"></i><i style="height:68%"></i><i style="height:35%"></i><i style="height:72%"></i><i style="height:39%"></i><i style="height:76%"></i><i style="height:43%"></i><i style="height:80%"></i><i style="height:47%"></i><i style="height:84%"></i><i style="height:51%"></i><i style="height:88%"></i><i style="height:55%"></i><i style="height:22%"></i><i style="height:59%"></i><i style="height:26%"></i><i style="height:63%"></i><i style="height:30%"></i><i style="height:67%"></i><i style="height:34%"></i><i style="height:71%"></i><i style="height:38%"></i><i style="height:75%"></i><i style="height:42%"></i><i style="height:79%"></i><i style="height:46%"></i><i style="height:83%"></i><i style="height:50%"></i><i style="height:87%"></i><i style="height:54%"></i><i style="height:21%"></i><i style="height:58%"></i><i style="height:25%"></i><i style="height:62%"></i><i style="height:29%"></i><i style="height:66%"></i><i style="height:33%"></i><i style="height:70%"></i><i style="height:37%"></i><i style="height:74%"></i><i style="height:41%"></i><i style="height:78%"></i><i style="height:45%"></i><i style="height:82%"></i><i style="height:49%"></i><i style="height:86%"></i><i style="height:53%"></i></div></div></div>
 <div class="tb"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3v18M18 3v18M6 12h12" /></svg>Split</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 3 8l9 5 9-5z M3 13l9 5 9-5"/></svg>Filters</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5h14M12 5v14"/></svg>Text</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="16" r="2"/></svg>Audio</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 4v16"/></svg>Speed</span></div></div></div>
 <div class="ico el ic1" data-s="3-4"><span><svg viewBox="0 0 24 24" fill="none" stroke="#1d1b2e" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8 8l12 10M8 16 20 6"/></svg></span>Familiar tools</div>
-<div class="ico el ic2" data-s="3-4"><span><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#ffb547" stroke="#1d1b2e" stroke-width="1.5"/></svg></span>Favourite effects</div>
+<div class="ico el ic2" data-s="3-4"><span><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#ffc83d" stroke="#1d1b2e" stroke-width="1.5"/></svg></span>Favourite effects</div>
 <div class="ico el ic3" data-s="3-4"><span><svg viewBox="0 0 24 24" fill="none" stroke="#1d1b2e" stroke-width="2"><path d="M3 6h7l2 2h9v11H3z" fill="#e9e4ff"/></svg></span>Saved projects</div>
-<div class="ico el ic4" data-s="3-4"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M3 18 9 12l4 4 8-9" stroke="#ff6b4a"/><path d="M15 7h6v6" stroke="#ff6b4a"/></svg></span>Results she trusts</div>
+<div class="ico el ic4" data-s="3-4"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M3 18 9 12l4 4 8-9" stroke="#f0287f"/><path d="M15 7h6v6" stroke="#f0287f"/></svg></span>Results she trusts</div>
 <div id="pm" class="el" data-s="4,8-9" style="right:6%;top:5%">Pr<small>Premiere Mobile</small></div>
 
 <div class="notif el" data-s="5-6" style="left:4%;top:4%"><em style="background:#ff3b5c">▶</em><span>New video to post!<small>Your audience is waiting</small></span></div>
 <div class="notif el n2" data-s="5-6" style="right:4%;top:12%;transition-delay:.3s"><em style="background:#3b7bff">31</em><span>Content deadline tomorrow.<small>Calendar · 9:00</small></span></div>
 <div class="notif el n3" data-s="6" style="left:4%;top:50%;transition-delay:.1s"><em style="background:#2fb383">✎</em><span>Plan · Film · Edit · Publish<small>4 tasks left today</small></span></div>
-<div class="notif el n4" data-s="6" style="right:4%;top:58%;transition-delay:.4s"><em style="background:#ffb547">💬</em><span>128 new comments<small>Reply to your community</small></span></div>
+<div class="notif el n4" data-s="6" style="right:4%;top:58%;transition-delay:.4s"><em style="background:#ffc83d">💬</em><span>128 new comments<small>Reply to your community</small></span></div>
 
 <div class="stat el" data-s="7"><div class="viz">
- <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#ecdfd3" stroke-width="14"/><circle id="arc" cx="60" cy="60" r="50" fill="none" stroke="url(#gr)" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 314.16"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#ffb547"/><stop offset="1" stop-color="#ff6b4a"/></linearGradient></defs></svg><div class="n"><span><span id="cnt">0</span><sup>%</sup></span></div></div>
+ <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#f5dce8" stroke-width="14"/><circle id="arc" cx="60" cy="60" r="50" fill="none" stroke="url(#gr)" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 314.16"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#ffc83d"/><stop offset="1" stop-color="#f0287f"/></linearGradient></defs></svg><div class="n"><span><span id="cnt">0</span><sup>%</sup></span></div></div>
  <div class="people" id="dots"></div></div>
- <div class="legend"><span><i style="background:var(--acc)"></i>reported stress</span><span><i style="background:#d9cbbf"></i>did not</span></div>
+ <div class="legend"><span><i style="background:var(--acc)"></i>reported stress</span><span><i style="background:#ecd3df"></i>did not</span></div>
  <p><b>of surveyed established creators reported work-related stress.</b></p><p class="src">Source: Kolsquare, 2025</p></div>
 
 <div class="src el" data-s="9" style="left:4%;top:2.5%;right:4%;z-index:6">Perceptions before testing (Focus Group, qualitative research) — not facts about Premiere Mobile.</div>
@@ -264,12 +264,12 @@ h1,h2,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
 <div class="proof el p4" data-s="11" style="left:4%;top:64%;transition-delay:.6s">Layer management<small>Focus Group, qualitative research</small></div>
 
 <div class="orbit el" data-s="14"></div>
-<div class="pill el" data-s="14" style="left:4%;top:7%"><i style="background:#ffb547"></i>Familiarity</div>
+<div class="pill el" data-s="14" style="left:4%;top:7%"><i style="background:#ffc83d"></i>Familiarity</div>
 <div class="pill el q2" data-s="14" style="right:4%;top:13%;transition-delay:.2s"><i></i>Easy-to-use editing</div>
-<div class="pill el q3" data-s="14" style="left:4%;top:56%;transition-delay:.4s"><i style="background:#ff6b4a"></i>Existing workflow</div>
+<div class="pill el q3" data-s="14" style="left:4%;top:56%;transition-delay:.4s"><i style="background:#f0287f"></i>Existing workflow</div>
 <div class="pill el q4" data-s="14" style="right:4%;top:62%;transition-delay:.6s"><i style="background:#7fd1ae"></i>Creative freedom</div>
 
-<div id="final" class="el" data-s="17"><img class="fm" src="img/maya-wow.webp" alt="" loading="lazy"><img class="fc" src="img/mariia.webp" alt="" loading="lazy"><h1>Make room for a <span>new way</span> to create.</h1><p>Maya's workflow · Premiere Mobile</p></div>
+<div id="final" class="el" data-s="17"><img class="fm" src="img/maya-wow.webp" alt="" loading="lazy"><img class="fc" src="img/mariia-confetti.webp" alt="" loading="lazy"><h1>Make room for a <span>new way</span> to create.</h1><p>Maya's workflow · Premiere Mobile</p></div>
 </div></div>
 <div class="steps">
 <section class="step" data-s="0"><div></div></section>
@@ -314,7 +314,8 @@ const stage=document.getElementById('stage');
 const parse=s=>{const out=new Set();s.split(',').forEach(p=>{const[a,b]=p.split('-').map(Number);for(let i=a;i<=(b??a);i++)out.add(i)});return out};
 const els=[...document.querySelectorAll('[data-s]')].filter(e=>!e.classList.contains('step')).map(e=>({e,s:parse(e.dataset.s)}));
 const dots=document.getElementById('dots');for(let i=0;i<100;i++)dots.appendChild(document.createElement('i'));
-const poses=[...document.querySelectorAll('#maya img')];
+const poses=[...document.querySelectorAll('#maya img')],mps=[...document.querySelectorAll('#mariia img')];
+const mpose=n=>n<=1?'laptop':n<=4?'clapperboard':n<=7?'calendar':n==8?'binoculars':n<=10?'lightbulb':n<=12?'chart':'confetti';
 const pose=n=>(n>=2&&n<=4)||n==10?'edit':(n>=5&&n<=7)?'stress':(n==11||n==12)?'wow':'idle';
 let cur=-1,raf,done7=false;
 function countUp(){if(done7)return;done7=true;cancelAnimationFrame(raf);const t0=performance.now(),c=document.getElementById('cnt'),d=[...dots.children],arc=document.getElementById('arc');
@@ -323,7 +324,7 @@ function set(n){if(n===cur)return;cur=n;
  els.forEach(({e,s})=>e.classList.toggle('v',s.has(n)));
  const sc=n<=1?0:n<=4?1:n<=7?2:n<=12?3:4;
  stage.className='stage sc'+sc+((n>=2&&n<=4)||(n>=10&&n<=14)?' side':'')+(n>=5&&n<=9?' small':'');
- const p=pose(n);poses.forEach(i=>i.classList.toggle('on',i.dataset.pose===p));
+ const p=pose(n);poses.forEach(i=>i.classList.toggle('on',i.dataset.pose===p));const q=mpose(n);mps.forEach(i=>i.classList.toggle('on',i.dataset.mp===q));
  if(n===7)countUp();}
 const steps=[...document.querySelectorAll('.step')];
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){steps.forEach(s=>s.classList.remove('on'));x.target.classList.add('on');set(+x.target.dataset.s)}}),{rootMargin:'-45% 0px -45% 0px'});
